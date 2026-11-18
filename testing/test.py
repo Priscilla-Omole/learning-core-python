@@ -4,6 +4,10 @@ import main
 
 
 class TestMain(unittest.TestCase):
+
+    def setUp(self):
+        return super().setUp()
+    
     def test_do_stuff(self):
         test_param = 10
         result = main.do_stuff(test_param)
@@ -12,7 +16,25 @@ class TestMain(unittest.TestCase):
     def test_do_stuff2(self):
         test_param = 'shdhene'
         result = main.do_stuff(test_param)
-        self.assertTrue(isinstance(result, ValueError))
+        self.assertIsInstance(result, ValueError)
 
+    def test_do_stuff3(self):
+        test_param = None
+        result = main.do_stuff(test_param)
+        self.assertEqual(result, 'please enter a number')
 
-unittest.main()
+    def test_do_stuff4(self):
+        test_param = ''
+        result = main.do_stuff(test_param)
+        self.assertEqual(result, 'please enter a number')
+
+    def test_do_stuff5(self):
+        test_param = 0
+        result = main.do_stuff(test_param)
+        self.assertEqual(result, 5)
+
+    def tearDown(self):
+        return super().tearDown()
+
+if __name__ == '__main__':
+    unittest.main()
